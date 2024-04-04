@@ -1,7 +1,4 @@
 Flask
-requests
-json
-os
 flask-cors
 aspose-words
 Markdown2docx
