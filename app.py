@@ -3,8 +3,7 @@ import requests
 import json
 import os
 from flask_cors import CORS
-# import aspose.words as aw
-# from Markdown2docx import Markdown2docx
+from Markdown2docx import Markdown2docx
 app = Flask(__name__)
 CORS(app)
 # Initializing the App and Gemini API
@@ -62,25 +61,25 @@ def rolePlayCreator():
     except Exception as e:
         print("Service Exception:", str(e))
         raise Exception("Error in getting response from Gemini API")
-# @app.route('/download-docx', methods=['POST'])
-# def download_docx():
-#     markdown_content = request.json['markdown_content']
-#     file_path = working_dir+"/RolePlay.md"
-#     create_md_file(markdown_content, file_path)
-#     output = aw.Document()
-#     output.remove_all_children()
-#     project = Markdown2docx(working_dir+"/RolePlay")
-#     project.eat_soup()
-#     project.save()
-#     return send_file("RolePlay.docx", as_attachment=True, download_name="role-play.docx", mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-# def create_md_file(text_content, file_path):
-#     try:
-#         # Open the file in write mode
-#         with open(file_path, 'w') as f:
-#             # Write the text content to the file
-#             f.write(text_content)
-#         print(f"Markdown file '{file_path}' created successfully.")
-#     except Exception as e:
-#         print("Error:", str(e))
-# if __name__ == '__main__':
-#     app.run(debug=True, host="0.0.0.0")
+@app.route('/download-docx', methods=['POST'])
+def download_docx():
+    markdown_content = request.json['markdown_content']
+    file_path = working_dir+"/RolePlay.md"
+    create_md_file(markdown_content, file_path)
+    # output = aw.Document()
+    # output.remove_all_children()
+    project = Markdown2docx(working_dir+"/RolePlay")
+    project.eat_soup()
+    project.save()
+    return send_file("RolePlay.docx", as_attachment=True, download_name="role-play.docx", mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+def create_md_file(text_content, file_path):
+    try:
+        # Open the file in write mode
+        with open(file_path, 'w') as f:
+            # Write the text content to the file
+            f.write(text_content)
+        print(f"Markdown file '{file_path}' created successfully.")
+    except Exception as e:
+        print("Error:", str(e))
+if __name__ == '__main__':
+    app.run(debug=True, host="0.0.0.0")

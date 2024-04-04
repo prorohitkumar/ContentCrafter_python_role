@@ -1,5 +1,5 @@
 Flask
-flask-cors
-google-generativeai==0.4.1
-Werkzeug== 2.2.2
-gunicorn
+requests
+aspose-words
+Markdown2docx
+Flask-Cors
