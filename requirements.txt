@@ -1,5 +1,3 @@
-Flask
-flask-cors
-aspose-words
-Markdown2docx
+Flask==2.0.2
+Flask-Cors==3.0.10
 gunicorn
